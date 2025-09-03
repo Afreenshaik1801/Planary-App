@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <div class="container">
+    <a href="{{ url_for('index') }}" class="logo {% if request.endpoint == 'index' %}active{% endif %}">Planary</a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+      <li><a href="{{ url_for('planner') }}" class="{% if request.endpoint == 'planner' %}active{% endif %}">Daily Planning</a></li>
+      <li><a href="{{ url_for('habits') }}" class="{% if request.endpoint == 'habits' %}active{% endif %}">Habits</a></li>
+      <li><a href="{{ url_for('travel') }}" class="{% if request.endpoint == 'travel' %}active{% endif %}">Travel Planning</a></li>
+      <li>
+        <button id="toggle-theme" class="toggle-mode-btn" aria-label="Toggle dark mode">🌙</button>
+      </li>
+    </ul>
+  </div>
+</nav>

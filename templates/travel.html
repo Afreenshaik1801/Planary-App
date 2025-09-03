@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <h1>Plan Your Journey with Ease</h1>
+  <p>Let us take the hassle out of travel — so you can focus on making memories.</p>
+</section>
+
+<section class="travel-tools">
+  <div class="tool-card">
+    <div class="tool-icon">✔️</div>
+    <h2>Packing Checklist</h2>
+    <p>We make packing easy — everything you need, sorted by category</p>
+    <a href="{{ url_for('packing') }}" class="tool-link">Create Your List</a>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-icon">📍</div>
+    <h2>Destination Explorer</h2>
+    <p>Find your perfect destination with smart filters</p>
+    <a href="{{ url_for('destination') }}" class="tool-link orange">Explore Destinations</a>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-icon">💱</div>
+    <h2>Currency Converter</h2>
+    <p>Stay on top of your travel budget with fast and easy currency tools</p>
+    <a href="{{ url_for('currency') }}" class="tool-link green">Convert Currency</a>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-icon">🗓️</div>
+    <h2>Trip Planner</h2>
+    <p>Your day, your way — plan it all in one place</p>
+    <a href="{{ url_for('trip_planner') }}" class="tool-link">Plan Your Trip</a>
+  </div>
+</section>
+
+{% endblock %}
