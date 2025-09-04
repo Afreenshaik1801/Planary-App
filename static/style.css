@@ -959,6 +959,11 @@ main {
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
+  color: #222; /* dark text in light mode */
+}
+
+body.dark-mode main {
+  color: #fff; /* white text in dark mode */
 }
 
 main header {
@@ -982,6 +987,7 @@ ul.item-list {
   margin: 0;
   flex-grow: 1;
   overflow-y: auto;
+  color: inherit; /* inherit text color from main */
 }
 
 ul.item-list li {
@@ -990,6 +996,7 @@ ul.item-list li {
   align-items: center;
   padding: 0.5rem 0;
   border-bottom: 1px solid #eee;
+  color: inherit; /* inherit text color */
 }
 
 body.dark-mode ul.item-list li {
@@ -1003,6 +1010,7 @@ label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: inherit; /* inherit text color */
 }
 
 label input[type="checkbox"] {
@@ -1049,6 +1057,14 @@ button:disabled {
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: border-color 0.2s;
+  color: #222; /* dark input text in light mode */
+  background: #fff; /* white bg in light mode */
+}
+
+body.dark-mode .add-item input[type="text"] {
+  color: #fff; /* white input text in dark mode */
+  background: #2c2c2c; /* darker bg in dark mode */
+  border-color: #555;
 }
 
 .add-item input[type="text"]:focus {
