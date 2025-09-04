@@ -15,8 +15,6 @@ const DEFAULTS = [
   { id: "seed-exercise", name: "🏃 Exercise",    desc: "30 Mins",          days: Array(7).fill(false), theme: "theme-exercise" },
   { id: "seed-reading",  name: "📖 Read Book",   desc: "10 Pages",         days: Array(7).fill(false), theme: "theme-reading" },
   { id: "seed-water",    name: "🌿 Water Plants", desc: "Keep then happy",  days: Array(7).fill(false), theme: "theme-water" },
-  { id: "seed-meditate", name: "🛌 Sleep",  desc: "7-8 Hours",       days: Array(7).fill(false), theme: "theme-meditate" },
-  { id: "seed-exercise", name: "💊 Take Medicine",    desc: "Never miss a pill",          days: Array(7).fill(false), theme: "theme-exercise" },
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
