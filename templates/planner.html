@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Daily Planner | Planary{% endblock %}
+
+{% block content %}
+<section class="planner-container" aria-label="Daily Task Planner">
+  
+  
+  <!-- HEADER -->
+  <header class="planner-header">
+    <h1 class="planner-title">🗓️ Plan Your Day</h1>
+    <p class="planner-subtitle">Organize your tasks and stay productive.</p>
+  </header>
+
+  <!-- FLASH MESSAGES -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages" role="alert">
+        {% for category, message in messages %}
+          <p class="flash-message {{ category }}">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- ADD TASK FORM -->
+  <form method="POST" action="{{ url_for('add_task') }}" class="planner-form">
+    <input
+      type="text"
+      id="task-content"
+      name="content"
+      placeholder="What needs to be done?"
+      required
+      autocomplete="off"
+      class="task-input"
+    />
+    <button type="submit" class="btn primary-btn">Add Task</button>
+  </form>
+
+  <!-- SEARCH BAR -->
+  <div class="planner-form">
+    <input type="text" id="taskSearch" placeholder="Search tasks..." class="task-input" />
+  </div>
+
+  <!-- FILTER BUTTONS -->
+  {% if tasks %}
+  <div class="task-filters">
+    <button class="filter-btn active-filter" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="active">To-Do</button>
+    <button class="filter-btn" data-filter="completed">Completed</button>
+  </div>
+  {% endif %}
+
+  <!-- TASK LIST -->
+  {% if tasks %}
+  <ul class="task-list" role="list">
+    {% for task in tasks %}
+    <li class="task-card {% if task.completed %}completed{% endif %}" 
+        data-status="{{ 'completed' if task.completed else 'active' }}">
+
+      <!-- Checkbox toggle -->
+      <form method="POST" action="{{ url_for('toggle_task', task_id=task.id) }}" class="task-toggle-form">
+        <button type="submit" class="toggle-check">
+          {{ '✔️' if task.completed else '⬜' }}
+        </button>
+      </form>
+
+      <!-- Task text -->
+      <span class="task-text">{{ task.title }}</span>
+
+      <!-- Edit + Delete -->
+      <div class="task-actions">
+        <a href="{{ url_for('edit_task', task_id=task.id) }}" class="btn small-btn">Edit</a>
+        <form method="POST" action="{{ url_for('delete_task', task_id=task.id) }}" onsubmit="return confirm('Delete this task?');">
+          <button type="submit" class="btn small-btn danger-btn">Delete</button>
+        </form>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="no-tasks">No tasks yet. Add something to get started!</p>
+  {% endif %}
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='planner_script.js') }}"></script>
+{% endblock %}
